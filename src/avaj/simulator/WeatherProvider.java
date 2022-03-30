@@ -1,15 +1,15 @@
 package avaj.simulator;
 
 public class WeatherProvider {
-    private WeatherProvider weatherProvider;
-    private String[] weather;
+    private static WeatherProvider weatherProvider;
+    private static final String[] weather = {"RAIN", "FOG", "SUN", "SNOW"};
 
     private WeatherProvider() {
 
     }
 
-    public WeatherProvider getProvider() {
-        return weatherProvider;
+    public static WeatherProvider getProvider() {
+        return null;
     }
 
     public String getCurrentWeather(Coordinates coordinates) {
