@@ -2,10 +2,10 @@ package avaj.simulator;
 
 public class WeatherTower extends Tower {
     public String getWeather(Coordinates coordinates) {
-        return null;
+        return WeatherProvider.getProvider().getCurrentWeather(coordinates);
     }
 
     void changeWeather() {
-
+        this.conditionsChanged();
     }
 }
