@@ -1,10 +1,10 @@
 package avaj.simulator;
 
+import java.util.LinkedList;
 import java.util.List;
-import java.util.ArrayList;
 
 public abstract class Tower {
-    private final List<Flyable> observers = new ArrayList<>();
+    private final List<Flyable> observers = new LinkedList<>();
 
     public void register(Flyable flyable) {
         observers.add(flyable);
@@ -15,6 +15,6 @@ public abstract class Tower {
     }
 
     protected void conditionsChanged() {
-        observers.get(1).updateConditions();
+        observers.forEach(Flyable::updateConditions);
     }
 }
