@@ -9,7 +9,7 @@ public class Simulator {
     private static final String ERROR = "\u001B[31m[Error]\u001B[0m";
     public static void main(String[] args) {
         if (args.length != 1) {
-            System.out.println("[Error] - Программа принимаеть один и только один аргумент");
+            System.out.println(ERROR + " - программа принимаеть один и только один аргумент");
         } else {
             try {
                 BufferedReader fr = new BufferedReader(new FileReader(args[0]));
@@ -18,6 +18,7 @@ public class Simulator {
                 Parser parser = new Parser();
                 parser.setCount(fr.readLine());
                 parser.lines(fr);
+                fr.close();
 
                 /* Register tower */
                 WeatherTower tower = new WeatherTower();
@@ -27,6 +28,7 @@ public class Simulator {
                 for (int i = 0; i < parser.getCount(); i++) {
                     tower.changeWeather();
                 }
+                tower.close();
             } catch (IOException e) {
                 System.out.println(ERROR + " - файл не найден");
             } catch (NullPointerException | NumberFormatException e) {
