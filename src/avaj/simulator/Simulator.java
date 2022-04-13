@@ -31,7 +31,7 @@ public class Simulator {
                 tower.close();
             } catch (IOException e) {
                 System.out.println(ERROR + " - файл не найден");
-            } catch (NullPointerException | NumberFormatException e) {
+            } catch (NullPointerException | NumberCheckException e) {
                 System.out.println(ERROR + e.getMessage());
             }
         }
@@ -50,7 +50,7 @@ public class Simulator {
                 throw new NullPointerException(" - пустой файл");
             String[] l = number.split("\\s+");
             if (l.length != 1 || l[0].isEmpty())
-                throw new NumberFormatException(" - ...");
+                throw new NumberCheckException(" - ...");
             count = numberCheck(l[0], 1);
         }
 
@@ -64,7 +64,7 @@ public class Simulator {
         private int numberCheck(String number, int line_n) {
             int n = parseNumber(number, line_n);
             if (n < 0) {
-                throw new NumberFormatException(" - ...");
+                throw new NumberCheckException(" - ...");
             }
             return n;
         }
@@ -73,7 +73,7 @@ public class Simulator {
             try {
                 return Integer.parseInt(number);
             } catch (NumberFormatException e) {
-                throw new NumberFormatException(" - ...");
+                throw new NumberCheckException(" - ...");
             }
         }
 
@@ -82,7 +82,7 @@ public class Simulator {
             for (int line_n = 2; (line = fr.readLine()) != null; ++line_n) {
                 String[] l = line.split("\\s+");
                 if (l.length != 5) {
-                    throw new NumberFormatException(" - ...");
+                    throw new NumberCheckException(" - ...");
                 }
                 setFlyable(l, line_n);
             }
