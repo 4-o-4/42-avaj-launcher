@@ -1,4 +1,4 @@
-package avaj.simulator;
+package avaj.simulator.air;
 
 public abstract class Aircraft {
     private static long idCounter;

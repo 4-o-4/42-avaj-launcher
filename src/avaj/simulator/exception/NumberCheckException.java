@@ -1,4 +1,4 @@
-package avaj.simulator;
+package avaj.simulator.exception;
 
 public class NumberCheckException extends NumberFormatException {
     public NumberCheckException(String s) {

@@ -1,4 +1,4 @@
-package avaj.simulator;
+package avaj.simulator.tower;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -30,7 +30,7 @@ public abstract class Tower {
         observers.forEach(Flyable::updateConditions);
     }
 
-    protected void write(String str) {
+    public void write(String str) {
         try {
             writer.write(str);
             writer.flush();
@@ -38,10 +38,14 @@ public abstract class Tower {
         }
     }
 
-    protected void close() {
+    public void close() {
         try {
             writer.close();
         } catch (IOException ignored) {
         }
+    }
+
+    public Boolean isNull() {
+        return observers.isEmpty();
     }
 }

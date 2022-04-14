@@ -1,4 +1,4 @@
-package avaj.simulator;
+package avaj.simulator.air;
 
 public class Coordinates {
     private int longitude; // долгота
@@ -32,6 +32,6 @@ public class Coordinates {
     }
 
     public void setHeight(int height) {
-        this.height = height;
+        this.height = Math.min(height, 100);
     }
 }

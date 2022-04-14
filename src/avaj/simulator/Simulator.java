@@ -1,5 +1,9 @@
 package avaj.simulator;
 
+import avaj.simulator.air.AircraftFactory;
+import avaj.simulator.tower.Flyable;
+import avaj.simulator.exception.NumberCheckException;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -25,7 +29,7 @@ public class Simulator {
                 parser.getFlyable().forEach(f -> f.registerTower(tower));
 
                 /* Смена погоды */
-                for (int i = 0; i < parser.getCount(); i++) {
+                for (int i = 0; i < parser.getCount() && !tower.isNull(); i++) {
                     tower.changeWeather();
                 }
                 tower.close();
@@ -58,6 +62,8 @@ public class Simulator {
             List<Integer> n = new ArrayList<>(3);
             for (int i = 2; i < l.length; i++)
                 n.add(numberCheck(l[i], line_n));
+            if (n.get(2) > 100)
+                throw new NumberCheckException(" - ...");
             flyable.add(AircraftFactory.newAircraft(l[0], l[1], n.get(0), n.get(1), n.get(2)));
         }
 

@@ -1,13 +1,19 @@
-package avaj.simulator;
+package avaj.simulator.tower;
+
+import avaj.simulator.air.Coordinates;
 
 public class WeatherProvider {
-    private static WeatherProvider weatherProvider = new WeatherProvider();
+    private static WeatherProvider weatherProvider;
     private static final String[] weather = {"RAIN", "FOG", "SUN", "SNOW"};
 
     private WeatherProvider() {
     }
 
-    public static WeatherProvider getProvider() {
+    /* Ленивый Singleton */
+    public static synchronized WeatherProvider getProvider() {
+        if (weatherProvider == null) {
+            weatherProvider = new WeatherProvider();
+        }
         return weatherProvider;
     }
 
