@@ -18,6 +18,10 @@ public class WeatherProvider {
     }
 
     public String getCurrentWeather(Coordinates coordinates) {
-        return weather[(int) (Math.random() * weather.length)];
+        return weather[(int) (Math.random() *
+            coordinates.getLongitude() +
+            coordinates.getLatitude() +
+            coordinates.getHeight()) %
+            weather.length];
     }
 }

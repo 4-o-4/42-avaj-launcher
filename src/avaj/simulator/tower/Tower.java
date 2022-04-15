@@ -26,8 +26,9 @@ public abstract class Tower {
         observers.remove(flyable);
     }
 
-    protected void conditionsChanged() {
-        observers.forEach(Flyable::updateConditions);
+    protected void conditionsChanged()  {
+        List<Flyable> _observers = new LinkedList<>(observers);
+        _observers.forEach(Flyable::updateConditions);
     }
 
     public void write(String str) {

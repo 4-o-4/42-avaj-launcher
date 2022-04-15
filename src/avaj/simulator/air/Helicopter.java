@@ -15,27 +15,27 @@ public class Helicopter extends Aircraft implements Flyable {
         if (coordinates.getHeight() <= 0) {
             weatherTower.unregister(this);
             coordinates.setHeight(0);
-            System.out.printf("%s: приземлился - долгота: %d, широта: %d, высота: %d",
-                this, coordinates.getLongitude(), coordinates.getLatitude(), coordinates.getHeight());
+            weatherTower.write(String.format("%s: приземлился - долгота: %d, широта: %d, высота: %d\n",
+                    this, coordinates.getLongitude(), coordinates.getLatitude(), coordinates.getHeight()));
         }
         else {
             String weather = weatherTower.getWeather(coordinates);
             if ("RAIN".equals(weather)) {
                 coordinates.setLongitude(coordinates.getLongitude() + 5);
-                System.out.println(this + ": идет дождь.");
+                weatherTower.write(this + ": идет дождь.\n");
             }
             else if ("FOG".equals(weather)) {
                 coordinates.setLongitude(coordinates.getLongitude() + 1);
-                System.out.println(this + ": туман.");
+                weatherTower.write(this + ": туман.\n");
             }
             else if ("SUN".equals(weather)) {
                 coordinates.setLongitude(coordinates.getLongitude() + 10);
                 coordinates.setHeight(coordinates.getHeight() - 2);
-                System.out.println(this + ": солнце.");
+                weatherTower.write(this + ": солнце.\n");
             }
             else if ("SNOW".equals(weather)) {
                 coordinates.setHeight(coordinates.getHeight() - 12);
-                System.out.println(this + ": идет снег.");
+                weatherTower.write(this + ": идет снег.\n");
             }
         }
     }
@@ -44,8 +44,7 @@ public class Helicopter extends Aircraft implements Flyable {
     public void registerTower(WeatherTower weatherTower) {
         this.weatherTower = weatherTower;
         weatherTower.register(this);
-
-        System.out.println("Tower says: " + this + " registered to weather tower.");
+        weatherTower.write("Tower says: " + this + " registered to weather tower.\n");
     }
 
     @Override
